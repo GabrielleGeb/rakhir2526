@@ -21,6 +21,7 @@ export default function Layout({
   showRadar = true,
   showDivider = true,
   showEq = true,
+  showScan = true,
   backTo = null,
   backLabel = 'BACK',
   nextTo = null,
@@ -28,17 +29,17 @@ export default function Layout({
   modals = null,
   children,
 }) {
-  const slideRef = useStageFit();
+  const { slideRef, stageRef } = useStageFit();
 
   return (
-    <div id="stage">
+    <div id="stage" ref={stageRef}>
       <div id="slide" ref={slideRef}>
         {/* texture & lighting */}
         <div className="layer grid"></div>
         <div className="layer dots"></div>
         <div className="layer glow"></div>
         <div className="layer vignette"></div>
-        <div className="layer scan"></div>
+        <div className="layer scan" style={showScan ? undefined : { display: 'none' }}></div>
 
         {/* corner brackets */}
         <div className="bracket" style={{ left: 54, top: 54 }}>

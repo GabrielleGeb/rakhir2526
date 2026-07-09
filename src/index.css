@@ -41,9 +41,14 @@ html, body { height: 100%; background: #000; overflow: hidden; }
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
 }
+#stage.scroll-mode {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
 #slide {
   position: relative;
   width: 1920px; height: 1080px;
+  flex-shrink: 0;
   transform-origin: center center;
   background: #0c0c0d;
   overflow: hidden;
@@ -1163,4 +1168,58 @@ html, body { height: 100%; background: #000; overflow: hidden; }
   color: rgba(255,255,255,.4);
   margin-left: 8px;
   font-size: 13px;
+}
+
+/* ===== Gallery slide (highlight foto) ===== */
+.gallery-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 130px;
+  gap: 14px;
+}
+.gallery-tile {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid rgba(232,130,30,.4);
+  background: #000;
+  box-shadow: 0 0 18px rgba(232,130,30,.16);
+  animation: rise .7s ease both;
+  grid-column: span 1;
+  grid-row: span 1;
+}
+.gallery-tile.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(.1) contrast(1.05);
+}
+.gallery-tile-corner {
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: #E8821E;
+  border-style: solid;
+  border-width: 0;
+  opacity: .85;
+}
+.gallery-tile-corner.tl { left: 6px; top: 6px; border-top-width: 2.5px; border-left-width: 2.5px; }
+.gallery-tile-corner.br { right: 6px; bottom: 6px; border-bottom-width: 2.5px; border-right-width: 2.5px; }
+.gallery-tile-label {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,.85);
+  background: rgba(0,0,0,.55);
+  padding: 3px 8px;
+  border: 1px solid rgba(232,130,30,.4);
+  border-radius: 3px;
 }
